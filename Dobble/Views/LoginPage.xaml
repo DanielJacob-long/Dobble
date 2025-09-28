@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Dobble.Views.LoginPage"
+             Title="LoginPage"
+             xmlns:m="clr-namespace:Dobble.Models"
+             xmlns:vm="clr-namespace:Dobble.ViewModels"
+             x:DataType="vm:LoginVM"
+             IsBusy="{Binding IsBusy}">
+    <VerticalStackLayout Spacing="25" Margin="10">
+        <Label FontAttributes="Bold" FontSize="32" HorizontalOptions="Center" Text="{x:Static m:Strings.RegisterTitle}" />
+        <Entry  Placeholder="{x:Static m:Strings.UserNamePlaceHolder}" Text="{Binding UserName}"/>
+        <Entry  Placeholder="{x:Static m:Strings.PasswordPlaceHolder}" ClearButtonVisibility="WhileEditing" Text="{Binding Password}"/>
+        <Button Text="{x:Static m:Strings.Login}" Command="{Binding LoginCommand}"/>
+    </VerticalStackLayout>
+</ContentPage>

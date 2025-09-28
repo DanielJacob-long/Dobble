@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Dobble.Views.RegisterPage"
+             Title="RegisterPage"
+             xmlns:m="clr-namespace:Dobble.Models"
+             xmlns:vm="clr-namespace:Dobble.ViewModels"
+             x:DataType="vm:RegisterVM">
+    <VerticalStackLayout Spacing="25" Margin="10">
+        <Label FontAttributes="Bold" FontSize="32" HorizontalOptions="Center" Text="{x:Static m:Strings.RegisterTitle}" />
+        <Entry  Placeholder="{x:Static m:Strings.NamePlaceHolder}" Text="{Binding Name}"/>
+        <Entry  Placeholder="{x:Static m:Strings.UserNamePlaceHolder}" Text="{Binding UserName}"/>
+        <Entry  Placeholder="{x:Static m:Strings.EmailPlaceHolder}" Text="{Binding Email}"/>
+        <Entry  Placeholder="{x:Static m:Strings.PasswordPlaceHolder}" ClearButtonVisibility="WhileEditing" Text="{Binding Password}"/>
+        <Button Text="{x:Static m:Strings.Register}" Command="{Binding RegisterCommand}"/>
+    </VerticalStackLayout>
+</ContentPage>520
