@@ -9,5 +9,7 @@
         public const string Register = "Register";
         public const string RegisterTitle = "Register";
         public const string Login = "Login";
+        public const string CreateUserError = "Create user error";
+        public const string Ok = "OK";
     }
 }

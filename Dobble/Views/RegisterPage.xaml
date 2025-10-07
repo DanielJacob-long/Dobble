@@ -14,4 +14,4 @@
         <Entry  Placeholder="{x:Static m:Strings.PasswordPlaceHolder}" ClearButtonVisibility="WhileEditing" Text="{Binding Password}"/>
         <Button Text="{x:Static m:Strings.Register}" Command="{Binding RegisterCommand}"/>
     </VerticalStackLayout>
-</ContentPage>520
+</ContentPage>

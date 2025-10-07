@@ -1,30 +1,25 @@
 ﻿using System.Windows.Input;
 using Dobble.ModelsLogic;
+using Dobble.Models;
 
 namespace Dobble.ViewModels
 {
-    internal class RegisterVM
+    internal class RegisterVM:ObservableObject
     {
         private readonly User user = new();
         public ICommand RegisterCommand { get; }
-
-        public bool CanRegister()
-        {
-            return !string.IsNullOrWhiteSpace(user.Name);
-        }
-
-        private void Register()
-        {
-            user.Register();
-        }
-
+        public ICommand ToggleIsPasswordCommand { get; }
+        public bool IsBusy { get; set; } = false;
         public string Name
         {
             get => user.Name;
             set
             {
-                user.Name = value;
-                (RegisterCommand as Command)?.ChangeCanExecute();
+                if (user.Name != value)
+                {
+                    user.Name = value;
+                    (RegisterCommand as Command)?.ChangeCanExecute();
+                }
             }
         }
         public string UserName
@@ -32,8 +27,11 @@ namespace Dobble.ViewModels
             get => user.UserName;
             set
             {
-                user.UserName = value;
-                (RegisterCommand as Command)?.ChangeCanExecute();
+                if (user.Name != value)
+                {
+                    user.Name = value;
+                    (RegisterCommand as Command)?.ChangeCanExecute();
+                }
             }
         }
         public string Email
@@ -41,22 +39,49 @@ namespace Dobble.ViewModels
             get => user.Email;
             set
             {
-                user.Email = value;
-                (RegisterCommand as Command)?.ChangeCanExecute();
+                if (user.Email != value)
+                {
+                    user.Email = value;
+                    (RegisterCommand as Command)?.ChangeCanExecute();
+                }
             }
         }
+
         public string Password
         {
             get => user.Password;
             set
             {
-                user.Password = value;
-                (RegisterCommand as Command)?.ChangeCanExecute();
+                if (user.Password != value)
+                {
+                    user.Password = value;
+                    (RegisterCommand as Command)?.ChangeCanExecute();
+                }
             }
         }
+        public bool IsPassword { get; set; } = true;
+
         public RegisterVM()
         {
             RegisterCommand = new Command(Register, CanRegister);
+            ToggleIsPasswordCommand = new Command(ToggleIsPassword);
         }
+
+        private bool CanRegister(object arg)
+        {
+            return user.IsValid();
+        }
+
+        private void Register(object obj)
+        {
+            user.Register();
+        }
+
+        private void ToggleIsPassword()
+        {
+            IsPassword = !IsPassword;
+            OnPropertyChanged(nameof(IsPassword));
+        }
+       
     }
 }

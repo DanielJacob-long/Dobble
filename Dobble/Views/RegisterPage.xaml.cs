@@ -1,11 +1,11 @@
-namespace Dobble.Views;
 using Dobble.ViewModels;
-using System;
+
+namespace Dobble.Views;
 
 public partial class RegisterPage : ContentPage
 {
-	public RegisterPage()
-	{
+    public RegisterPage()
+    {
         InitializeComponent();
         BindingContext = new RegisterVM();
     }

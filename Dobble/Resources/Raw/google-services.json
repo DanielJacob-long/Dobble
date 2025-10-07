@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1075598087591",
+    "project_id": "dobble-2dfe7",
+    "storage_bucket": "dobble-2dfe7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1075598087591:android:90363c4eb909da715c5282",
+        "android_client_info": {
+          "package_name": "com.meitar.dobble"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhOlk7diAFaKK2WIgy1ymwo6TwJpIP9wU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

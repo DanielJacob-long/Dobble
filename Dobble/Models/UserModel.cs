@@ -1,13 +1,17 @@
-﻿namespace Dobble.Models
+﻿using Dobble.ModelsLogic;
+
+namespace Dobble.Models
 {
     internal abstract class UserModel
     {
-        public abstract void Register();
+        protected FbData fbd = new();
+        public bool IsRegistered => !string.IsNullOrWhiteSpace(Name);
         public string Name { get; set; } = string.Empty;
         public string UserName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
         public abstract bool Login();
-        public bool IsRegistered => !string.IsNullOrWhiteSpace(Name);
+        public abstract void Register();
+        public abstract bool IsValid();
     }
 }
