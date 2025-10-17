@@ -75,6 +75,19 @@ namespace Dobble.ViewModels
         private void Register(object obj)
         {
             user.Register();
+
+            user.OnAuthComplete += OuthComplete;
+        }
+
+        private void OuthComplete(object? sender, EventArgs e)
+        {
+            if (Application.Current != null)
+            {
+                MainThread.InvokeOnMainThreadAsync(() =>
+                {
+                    Application.Current.MainPage = new AppShell();
+                });
+            }
         }
 
         private void ToggleIsPassword()

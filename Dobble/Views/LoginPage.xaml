@@ -12,5 +12,23 @@
         <Entry  Placeholder="{x:Static m:Strings.UserNamePlaceHolder}" Text="{Binding UserName}"/>
         <Entry  Placeholder="{x:Static m:Strings.PasswordPlaceHolder}" ClearButtonVisibility="WhileEditing" Text="{Binding Password}"/>
         <Button Text="{x:Static m:Strings.Login}" Command="{Binding LoginCommand}"/>
+        <Label
+    Margin="0"
+    FontSize="17"
+    HorizontalOptions="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="{x:Static m:Strings.ForgotPW}" TextColor="White" />
+                    <Span
+                Text="{x:Static m:Strings.ResetPW}"
+                TextColor="LightBlue"
+                TextDecorations="Underline">
+                        <Span.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
+                        </Span.GestureRecognizers>
+                    </Span>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
     </VerticalStackLayout>
 </ContentPage>

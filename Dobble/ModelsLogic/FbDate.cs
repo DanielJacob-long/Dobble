@@ -42,5 +42,27 @@ namespace Dobble.ModelsLogic
                 return facl.User.Uid;
             }
         }
+        public async Task SendPasswordResetEmailAsync(string email, Func<Task, Task> OnCompleteSendEmail)
+        {
+            // Start Firebase sign-in
+            Task firebaseTask = facl.ResetEmailPasswordAsync(email);
+            try
+            {
+                // Await Firebase sign-in
+                await firebaseTask;
+            }
+            catch (Exception ex)
+            {
+                // Wrap the exception in a Task to pass to the callback
+                TaskCompletionSource<Firebase.Auth.UserCredential> tcs = new();
+                tcs.SetException(ex);
+                firebaseTask = tcs.Task;
+            }
+            finally
+            {
+                // Always invoke the callback, even if the sign-in failed
+                await OnCompleteSendEmail(firebaseTask);
+            }
+        }
     }
 }

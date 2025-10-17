@@ -9,6 +9,7 @@ namespace Dobble.ViewModels
         private User user = new();
         public ICommand LoginCommand { get; }
         public ICommand ToggleIsPasswordCommand { get; }
+        public ICommand ForgotPasswordCommand { get; }
         public bool IsBusy { get; set; } = false;
         public string UserName
         {
@@ -34,8 +35,16 @@ namespace Dobble.ViewModels
         {
             LoginCommand = new Command(async () => await Login(), CanLogin);
             ToggleIsPasswordCommand = new Command(ToggleIsPassword);
+            ForgotPasswordCommand = new Command(async () => await ForgotPassword());
         }
-
+        private async Task ForgotPassword()
+        {
+            IsBusy = true;
+            OnPropertyChanged(nameof(IsBusy));
+            await user.ResetPassword();
+            IsBusy = false;
+            OnPropertyChanged(nameof(IsBusy));
+        }
         private void ToggleIsPassword()
         {
             IsPassword = !IsPassword;

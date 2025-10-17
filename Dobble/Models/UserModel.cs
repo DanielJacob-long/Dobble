@@ -5,6 +5,7 @@ namespace Dobble.Models
     internal abstract class UserModel
     {
         protected FbData fbd = new();
+        public EventHandler? OnAuthComplete;
         public bool IsRegistered => !string.IsNullOrWhiteSpace(Name);
         public string Name { get; set; } = string.Empty;
         public string UserName { get; set; } = string.Empty;
